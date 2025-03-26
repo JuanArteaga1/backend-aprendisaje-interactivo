@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+const mongoose = require( "mongoose");
 
-export const connectdb = async () => {
+exports.connectdb = async () => {
     try {
-        await mongoose.connect('mongodb+srv://root:133724@cluster0.eluxw.mongodb.net/')
+        await mongoose.connect('mongodb+srv://root:133724@cluster0.eluxw.mongodb.net/proyectoWeb')
         console.log('BASE DE DATOS CONECTADA')
         
     } catch (error) {
