@@ -1,4 +1,4 @@
-const UsuariosModel = from('../models/Usuariosmodels');
+const UsuariosModel = require('../models/Usuarios');
 
 /*
 definimos los metodos que vamos a utilizar desde el controlador
@@ -19,6 +19,7 @@ exports.getAllUsuariosId = async (id) => {
 
 //creamos un nuevo estudiante
 exports.createUsuario = async (Usuario) => {
+    console.log("hola mundo");
     const newUsuario = new UsuariosModel(Usuario);
     await newUsuario.save();
     return newUsuario;

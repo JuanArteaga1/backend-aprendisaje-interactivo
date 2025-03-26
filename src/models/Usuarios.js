@@ -11,8 +11,9 @@ const UsuariosSchema = new Schema({
         required: true
     },
     rol: {
-        type: id,
-        required: true
+        type: Schema.Types.ObjectId, // ✅ Usa 'Schema.Types.ObjectId'
+        required: true,
+        ref: 'Roles' // Opcional: referencia a la colección 'Roles'
     },
     estado: {
         type: String,
@@ -20,17 +21,18 @@ const UsuariosSchema = new Schema({
     },
     telefono: {
         type: String,
-        required:false
+        required: false
     },
     funcion: {
-        type: id,
-        required: true
+        type: Schema.Types.ObjectId, // ✅ Usa 'Schema.Types.ObjectId'
+        required: true,
+        ref: 'Funciones' // Opcional: referencia a otra colección
     },
     fechaRegistro: {
-        type: id,
+        type: Date, // ✅ Si es una fecha, usa 'Date'
         required: true
     }
-    
 });
+
 
 module.exports = mongoose.model("Usuario",UsuariosSchema)

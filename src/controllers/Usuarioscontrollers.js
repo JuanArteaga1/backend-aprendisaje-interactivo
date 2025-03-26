@@ -1,5 +1,5 @@
-const e = require('express');
-const UsuariosServices = require('../services/UsuariosServices.js');
+
+const UsuariosServices = require('../services/UsuariosServices');
 
 /*
 definimos los metodos expuestos en el controlador de estudiantes

@@ -1,6 +1,6 @@
-import app from  './app.js'
-import {connectdb} from './db.js'
+const app = require('./app.js')
+const db =require('./db.js')
 
-connectdb()
+db.connectdb()
 app.listen(3000)
 console.log('server on port',3000)
