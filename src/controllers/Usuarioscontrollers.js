@@ -38,7 +38,7 @@ exports.getAllUsuariosId = async (req, res) => {  // ✅ Ahora coincide con la i
 exports.updatedUsuarioId = async (req, res) => {
     try {
         const Usuario = await UsuariosServices.updatedUsuarioId(req.params.id, req.body);
-        res.status(200).json(usuarios);
+        res.status(200).json(usuario);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
