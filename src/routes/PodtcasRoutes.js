@@ -4,7 +4,7 @@ const { getAllPodtcas,getAllPodtcasId,createPodtcas, updatedPodtcasId,deletePodt
 const router = Router();
 
 
-router.route("/podcast").get(getAllPodtcas).post(createPodtcas);
+router.route("/").get(getAllPodtcas).post(createPodtcas);
 router.route("/:id").get(getAllPodtcasId).put(updatedPodtcasId).delete(deletePodtcas);
 
 module.exports =  router;

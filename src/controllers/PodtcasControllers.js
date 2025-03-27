@@ -9,7 +9,7 @@ definimos los metodos expuestos en el controlador de estudiantes
 exports.getAllPodtcas = async (req, res) => {
     try {
         const Podtcas = await PodtcasServices.getAllPodtcas();
-        res.status(200).json(Usuario);
+        res.status(200).json(Podtcas);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -19,7 +19,7 @@ exports.getAllPodtcas = async (req, res) => {
 exports.getAllPodtcasId = async (req, res) => {  // ✅ Ahora coincide con la importación
     try {
         const Podtcas = await PodtcasServices.getAllPodtcasId(req.params.id);
-        res.status(200).json(Usuario);
+        res.status(200).json(Podtcas);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -40,7 +40,7 @@ exports.createPodtcas = async (req, res) => {
 exports.updatedPodtcasId = async (req, res) => {
     try {
         const Podtcas = await PodtcasServices.updatedPodtcasId(req.params.id, req.body);
-        res.status(200).json(podtcas);
+        res.status(200).json(Podtcas);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -49,8 +49,8 @@ exports.updatedPodtcasId = async (req, res) => {
 //eliminamos un estudiante
 exports.deletePodtcas = async (req, res) => {
     try {
-        await PodtcasServices.deleteUsuario(req.params.id);
-        res.status(200).json({ message: "Student deleted successfully" });
+        await PodtcasServices.deletePodtcas(req.params.id);
+        res.status(200).json({ message: "podcast deleted successfully" });
     } catch (error) {
         res.status(404).json({ message: error.message });
     }

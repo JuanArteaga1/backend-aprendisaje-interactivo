@@ -38,7 +38,7 @@ exports.getAllUsuariosId = async (req, res) => {  // ✅ Ahora coincide con la i
 exports.updatedUsuarioId = async (req, res) => {
     try {
         const Usuario = await UsuariosServices.updatedUsuarioId(req.params.id, req.body);
-        res.status(200).json(usuario);
+        res.status(200).json(Usuario);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -48,7 +48,7 @@ exports.updatedUsuarioId = async (req, res) => {
 exports.deleteUsuarios = async (req, res) => {
     try {
         await UsuariosServices.deleteUsuario(req.params.id);
-        res.status(200).json({ message: "Student deleted successfully" });
+        res.status(200).json({ message: "usuario deleted successfully" });
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
