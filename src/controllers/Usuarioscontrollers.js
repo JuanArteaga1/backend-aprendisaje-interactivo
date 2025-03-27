@@ -1,10 +1,16 @@
 
 const UsuariosServices = require('../services/UsuariosServices');
 
-/*
-definimos los metodos expuestos en el controlador de estudiantes
-*/
 
+//creamos un nuevo estudiante
+exports.createUsuarios = async (req, res) => {
+    try {
+        const Usuario = await UsuariosServices.createUsuario(req.body);
+        res.status(201).json(Usuario);
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+};
 //obtenemos todos los estudiantes
 exports.getAllUsuarios = async (req, res) => {
     try {
@@ -26,15 +32,7 @@ exports.getAllUsuariosId = async (req, res) => {  // ✅ Ahora coincide con la i
 };
 
 
-//creamos un nuevo estudiante
-exports.createUsuarios = async (req, res) => {
-    try {
-        const Usuario = await UsuariosServices.createUsuario(req.body);
-        res.status(201).json(Usuario);
-    } catch (error) {
-        res.status(409).json({ message: error.message });
-    }
-};
+
 
 //actualizamos un estudiante
 exports.updatedUsuarioId = async (req, res) => {
