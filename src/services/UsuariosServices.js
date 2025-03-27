@@ -19,7 +19,6 @@ exports.getAllUsuariosId = async (id) => {
 
 //creamos un nuevo estudiante
 exports.createUsuario = async (Usuario) => {
-    console.log("hola mundo");
     const newUsuario = new UsuariosModel(Usuario);
     await newUsuario.save();
     return newUsuario;
