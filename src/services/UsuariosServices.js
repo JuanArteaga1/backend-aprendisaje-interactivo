@@ -19,10 +19,10 @@ exports.getAllUsuariosId = async (id) => {
 
 //creamos un nuevo estudiante
 exports.createUsuario = async (Usuario) => {
-    const newUsuario = new UsuariosModel(Usuario);
-    await newUsuario.save();
-    return newUsuario;
-};
+   const {email,contraseña,rol,estado,telefono,funcion,fechaRegistro}=reque
+    
+}
+;
 
 //actualizamos un estudiante
 exports.updatedUsuarioId = async (id, Usuario) => {
