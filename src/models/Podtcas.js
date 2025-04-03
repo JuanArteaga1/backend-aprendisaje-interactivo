@@ -10,7 +10,11 @@ const PodtcasSchema = new Schema({
         type: String,
         required: true
     },
-    archivoAudio: {
+    ArchivoImagen: {
+        type: String,
+        required: true
+    },
+    UrlAudio: {
         type: String,
         required: true
     },
