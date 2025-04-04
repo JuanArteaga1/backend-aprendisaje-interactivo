@@ -10,6 +10,10 @@ const UsuariosSchema = new Schema({
         type: String,
         required: true
     },
+    codigo: {
+        type: String,
+        required: true
+    },
     rol: {
         type: Schema.Types.ObjectId, // ✅ Usa 'Schema.Types.ObjectId'
         required: true,
@@ -18,10 +22,6 @@ const UsuariosSchema = new Schema({
     estado: {
         type: String,
         required: true
-    },
-    telefono: {
-        type: String,
-        required: false
     },
     funcion: {
         type: Schema.Types.ObjectId, // ✅ Usa 'Schema.Types.ObjectId'

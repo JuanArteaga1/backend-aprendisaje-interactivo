@@ -17,12 +17,6 @@ exports.getAllUsuariosId = async (id) => {
     return Usuarios;
 };
 
-//creamos un nuevo estudiante
-exports.createUsuario = async (Usuario) => {
-   const {email,contraseña,rol,estado,telefono,funcion,fechaRegistro}=reque
-    
-}
-;
 
 //actualizamos un estudiante
 exports.updatedUsuarioId = async (id, Usuario) => {
