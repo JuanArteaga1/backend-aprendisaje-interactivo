@@ -9,7 +9,7 @@ exports.createUsuarios = async (req, res) => {
     const {email,contrasena,codigo,rol,estado,funcion,fechaRegistro} = req.body
     try {
 
-        const contraseñahash = await bcrypt.hash(contrasena, 10)
+        const contraseñahash = await bcrypt.hash(contrasena, 8)
         const NewUser = new Usuario({
             email,
             contrasena:contraseñahash,
