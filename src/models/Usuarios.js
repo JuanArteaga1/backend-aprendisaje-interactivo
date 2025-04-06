@@ -10,28 +10,24 @@ const UsuariosSchema = new Schema({
         type: String,
         required: true
     },
-    codigo: {
+    Codigo: {
         type: String,
         required: true
     },
     rol: {
         type: Schema.Types.ObjectId, // ✅ Usa 'Schema.Types.ObjectId'
         required: true,
-        ref: 'Roles' // Opcional: referencia a la colección 'Roles'
+        ref: 'Rol' // Opcional: referencia a la colección 'Roles'
     },
     estado: {
         type: String,
         required: true
     },
-    funcion: {
-        type: Schema.Types.ObjectId, // ✅ Usa 'Schema.Types.ObjectId'
-        required: true,
-        ref: 'Funciones' // Opcional: referencia a otra colección
-    },
-    fechaRegistro: {
-        type: Date, // ✅ Si es una fecha, usa 'Date'
-        required: true
-    }
+    //funcion: {
+     //   type: Schema.Types.ObjectId, // ✅ Usa 'Schema.Types.ObjectId'
+     //   required: true,
+      //  ref: 'Funciones' // Opcional: referencia a otra colección
+    //},
 });
 
 

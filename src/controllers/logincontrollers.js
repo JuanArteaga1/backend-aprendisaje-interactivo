@@ -4,6 +4,9 @@ const bcrypt = require("bcryptjs")
 const CreateToken = require("../libs/jwt");
 const { token } = require("morgan");
 
+
+
+
 //creamos un nuevo estudiante
 exports.login = async (req, res) => {
     const {email,contrasena} = req.body
@@ -34,5 +37,10 @@ exports.loginout = async (req, res)=>{
 
 
 exports.Profile = async(req,res)=>{
-    res.status(200).json({message:"entro"})
+    const Usuariolog = await Usuario.findOne(req.Usuario._id) //no sirve el buscar por id
+    if (!Usuariolog) return res.status(400).json({message:"Usuario no encontrado"})
+    return res.json({
+    id:Usuariolog._id,
+    correo:Usuariolog.email
+    })
 }

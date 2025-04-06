@@ -4,20 +4,17 @@ const Schema = mongoose.Schema;
 const PersonaSchema = new Schema({
     UsuarioId: {
         type: Schema.Types.ObjectId, 
-        required: true
+        required: true,
+        ref: 'Usuarios'
     },
     NombreCompleto: {
         type: String,
         required: true
     },
-    Descripcion: {
-        type: Schema.Types.ObjectId,
-        required: true
-    },
-    FechaNacimineto: {
+    NumeroIdentificacion: {
         type: String,
         required: true
-    }
+    },
     
 });
 
