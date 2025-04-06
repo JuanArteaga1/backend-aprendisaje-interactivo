@@ -1,0 +1,35 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const ProyectoSchema = new Schema({
+    nombre_proyecto: {
+        type: String,
+        required: true
+    },
+    descripcion: {
+        type: String,
+        required: true
+    },
+    urlArchivo: {
+        type: String,
+        required: true
+    },
+    estado: {
+        type: String,
+        required: true
+    },
+    autores: {
+        type: Array, 
+        required: true,
+        ref: 'Usuarios' 
+    },
+    fechaPublicacion: {
+        type: Date,
+        required: true
+    },
+    categoriaId: {
+        type: Schema.Types.ObjectId, 
+        required: true
+    },
+});
+module.exports = mongoose.model("Proyectos", ProyectoSchema)
