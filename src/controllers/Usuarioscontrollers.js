@@ -1,14 +1,39 @@
 
 const UsuariosServices = require('../services/UsuariosServices');
-
+const Usuario = require("../models/Usuarios")
+const bcrypt = require("bcryptjs")
+const CreateToken = require("../libs/jwt")
 
 //creamos un nuevo estudiante
 exports.createUsuarios = async (req, res) => {
+    const {email,contrasena,codigo,rol,estado,funcion,fechaRegistro} = req.body
     try {
-        const Usuario = await UsuariosServices.createUsuario(req.body);
-        res.status(201).json(Usuario);
+
+        const contraseñahash = await bcrypt.hash(contrasena, 8)
+        const NewUser = new Usuario({
+            email,
+            contrasena:contraseñahash,
+            codigo,
+            rol,
+            estado,
+            funcion,
+            fechaRegistro,
+        })
+        const UsuarioSave = await NewUser.save()
+        const token =  await CreateToken({rol:UsuarioSave.rol})
+        res.cookie("token",token)
+        res.status(200).json({
+            id:UsuarioSave._id,
+            Email:UsuarioSave.email,
+            Rol:UsuarioSave.rol,
+            Estado:UsuarioSave.estado,
+
+
+        })
+        
     } catch (error) {
-        res.status(409).json({ message: error.message });
+        res.status(400).json({message: error.message})
+        
     }
 };
 //obtenemos todos los estudiantes
