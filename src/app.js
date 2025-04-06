@@ -1,14 +1,14 @@
 const express = require("express") ;
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 const Rpersona = require("./routes/PersonaRoutes.js")
 const Rusuarios = require("./routes/UsuariosRoutes.js"); // Asegúrate de que el archivo existe y tiene la extensión .js
 const Rpodcast = require('./routes/PodtcasRoutes.js');
 const RCategoria = require('./routes/CategoriaRoutes.js');
 const RInvestigacion = require('./routes/InvestigacionRoutes.js');
 const RRol = require('./routes/RolRoutes.js');
+const RProyectos = require('./routes/ProyectosRoute.js');
 const Rlogin = require('./routes/LoginRoutes.js');
-const cookieParser = require("cookie-parser");
-
 
 
 
@@ -22,9 +22,7 @@ app.use("/podcast",Rpodcast);
 app.use("/Personas",Rpersona);
 app.use("/Categorias",RCategoria);
 app.use("/Investigacion",RInvestigacion);
-
-
-
+app.use("/Proyectos",RProyectos);
 app.use("/login", Rlogin);
 
 
