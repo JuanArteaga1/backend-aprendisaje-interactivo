@@ -1,5 +1,4 @@
 
 
-const Token_Secreta = 'token secreta'
-
-module.exports = Token_Secreta
+exports.DominioComunicacion = 'http://localhost:5173/'
+exports.Token_Secreta = 'token secreta'
