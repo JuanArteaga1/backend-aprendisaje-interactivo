@@ -1,6 +1,7 @@
 const express = require("express") ;
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const cors = require('cors')
 const {DominioComunicacion} = require('./config.js')
 const Rusuarios = require("./routes/UsuariosRoutes.js"); // Asegúrate de que el archivo existe y tiene la extensión .js
 const Rpodcast = require('./routes/PodtcasRoutes.js');
@@ -9,7 +10,7 @@ const RInvestigacion = require('./routes/InvestigacionRoutes.js');
 const RRol = require('./routes/RolRoutes.js');
 const RProyectos = require('./routes/ProyectosRoute.js');
 const Rlogin = require('./routes/LoginRoutes.js');
-const cors = require('cors')
+const Rfuncion = require('./routes/FuncionRoutes.js')
 
 
 
@@ -27,6 +28,8 @@ app.use("/Categorias",RCategoria);
 app.use("/Investigacion",RInvestigacion);
 app.use("/Proyectos",RProyectos);
 app.use("/login", Rlogin);
+app.use("/Funcion", Rfuncion);
+
 
 
 
