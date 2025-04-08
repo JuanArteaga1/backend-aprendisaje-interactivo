@@ -27,14 +27,10 @@ exports.createUsuarios = async (req, res) => {
             NumeroIdentificacion:identificacion
         })
         const PersonaSave = await NewPersona.save()
-        //const token =  await CreateToken({rol:UsuarioSave.rol})
-        //res.cookie("token",token)
+        const token =  await CreateToken({rol: RolEncontrado.tipo_Rol})
+        res.cookie("token",token)
         res.status(200).json({
-            nombre:PersonaSave.nombre,
-            id:UsuarioSave._id,
-            Email:UsuarioSave.email,
-            Rol:UsuarioSave.rol,
-            Estado:UsuarioSave.estado,
+            token: token
         })
         
     } catch (error) {

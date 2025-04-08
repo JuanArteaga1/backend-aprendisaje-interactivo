@@ -1,4 +1,4 @@
-const Token_Secreta = require("../config.js")
+const {Token_Secreta} = require("../config.js")
 const jwt = require("jsonwebtoken");
 module.exports = function CreateToken(payload){
     return new Promise((resolve,reject) => {
