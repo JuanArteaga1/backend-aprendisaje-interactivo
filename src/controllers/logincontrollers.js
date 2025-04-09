@@ -9,21 +9,24 @@ const { token } = require("morgan");
 
 //creamos un nuevo estudiante
 exports.login = async (req, res) => {
+    console.log(req.body)
+    
     const {email,contrasena} = req.body
     try {
         const UsuarioLog = await Usuario.findOne({email})
+        console.log(UsuarioLog)
         if ( !UsuarioLog) return res.status(400).json({message: "usuario no registrado"})
         const contraselog = await bcrypt.compare(contrasena,UsuarioLog.contrasena)
         if (!contraselog) return res.status(400).json({message:"Contraseña incorrecta"})
         const token =  await CreateToken({id:UsuarioLog.id})
         res.cookie("token",token)
         res.status(200).json({
-            id:UsuarioLog._id,
             Email:UsuarioLog.email,
             Rol:UsuarioLog.rol,
-            Estado:UsuarioLog.estado,
+            token:token
         })  
     } catch (error) {
+        console.log(error)
         res.status(400).json({message: error.message})
         
     }

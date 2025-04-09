@@ -3,6 +3,7 @@ exports.ValidacionSchema = (schema) => (req,res,next) =>{
         schema.parse(req.body)
         next()
     } catch (error) {
+        console.log(error)
         res.status(400).json({error: error.errors.map((error) => error.message)})
         
     }
