@@ -19,17 +19,22 @@ const ProyectoSchema = new Schema({
         required: true
     },
     autores: {
-        type: Array, 
+        type: Array,
         required: true,
-        ref: 'Usuarios' 
+        ref: 'Usuarios'
     },
     fechaPublicacion: {
         type: Date,
         required: true
     },
     categoriaId: {
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         required: true
     },
+    materia: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Materia',
+        required: true
+    }
 });
 module.exports = mongoose.model("Proyectos", ProyectoSchema)
