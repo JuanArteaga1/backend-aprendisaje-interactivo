@@ -1,5 +1,7 @@
 
 const UsuariosServices = require('../services/UsuariosServices');
+const PersonaServices = require('../services/PersonaServices');
+
 const Usuario = require("../models/Usuarios")
 const Persona = require("../models/Personas")
 const Rol = require('../models/Rol');
@@ -57,10 +59,12 @@ exports.createUsuarios = async (req, res) => {
 };
 //obtenemos todos los estudiantes
 exports.getAllUsuarios = async (req, res) => {
+    console.log("entro")
     try {
-        const Usuario = await UsuariosServices.getAllUsuarios();
-        res.status(200).json(Usuario);
+        const usuarios = await UsuariosServices.getAllUsuarios()
+        res.status(200).json(usuarios);
     } catch (error) {
+        console.log(error)
         res.status(404).json({ message: error.message });
     }
 };
