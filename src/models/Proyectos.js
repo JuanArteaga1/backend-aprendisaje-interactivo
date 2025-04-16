@@ -14,10 +14,6 @@ const ProyectoSchema = new Schema({
         type: String,
         required: true
     },
-    estado: {
-        type: String,
-        required: true
-    },
     autores: {
         type: Array,
         required: true,
