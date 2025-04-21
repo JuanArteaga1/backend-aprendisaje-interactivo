@@ -1,7 +1,7 @@
 const {Router} = require("express");
 const { getAllPodtcas,getAllPodtcasId,createPodtcas, updatedPodtcasId,deletePodtcas} = require( "../controllers/PodtcasControllers.js"); 
 const {ValidacionSchema} = require('../middlewares/validacionMiddlewares')
-const {SubirPodtcasSchema} = require("../schemas/ProyectosSchema.js")
+const {SubirPodtcasSchema} = require("../schemas/PodtcasSchema.js")
 
 const router = Router();
 
