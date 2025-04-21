@@ -13,9 +13,7 @@ exports.createUsuarios = async (req, res) => {
 
     
     const {Nombre,identificacion,email,contrasena,Codigo,rol,estado,funcion} = req.body
-    const RolEncontrado = await Rol.findOne({tipo_Rol:rol})
 
-    const { Nombre, identificacion, email, contrasena, Codigo, rol, estado, funcion } = req.body
 
     const identificacionEncontada = await Persona.findOne({ NumeroIdentificacion: identificacion });
     if (identificacionEncontada) {
