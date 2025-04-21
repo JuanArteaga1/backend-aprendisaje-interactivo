@@ -11,6 +11,7 @@ const RRol = require('./routes/RolRoutes.js');
 const RProyectos = require('./routes/ProyectosRoute.js');
 const Rlogin = require('./routes/LoginRoutes.js');
 const Rfuncion = require('./routes/FuncionRoutes.js')
+const RMateria = require('./routes/MateriaRoutes.js')
 
 
 
@@ -29,7 +30,7 @@ app.use("/Investigacion",RInvestigacion);
 app.use("/Proyectos",RProyectos);
 app.use("/login", Rlogin);
 app.use("/Funcion", Rfuncion);
-
+app.use("/Materia", RMateria)
 
 
 

@@ -31,6 +31,11 @@ const PodtcasSchema = new Schema({
     fechaPublicacion: {
         type: Date, // ✅ Si es una fecha, usa 'Date'
         required: true
+    },
+    materia: {
+        type: mongoose.Schema.Types.ObjectId, //ObjectId es un tipo especial de Mongoose utilizado para hacer referencia a otro documento.Permite establecer relaciones entre diferentes colecciones de MongoDB.
+        ref: 'Materia',
+        required: true
     }
 });
 
