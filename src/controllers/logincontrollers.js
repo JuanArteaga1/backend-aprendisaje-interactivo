@@ -3,31 +3,31 @@ const Usuario = require("../models/Usuarios")
 const bcrypt = require("bcryptjs")
 const CreateToken = require("../libs/jwt");
 const { token } = require("morgan");
+const Rol = require("../models/Rol")
 
 
 
 
 //creamos un nuevo estudiante
 exports.login = async (req, res) => {
-    console.log(req.body)
-    
+
     const {email,contrasena} = req.body
     try {
         const UsuarioLog = await Usuario.findOne({email})
-        console.log(UsuarioLog)
-        if ( !UsuarioLog) return res.status(400).json({message: "usuario no registrado"})
+        if ( !UsuarioLog) return res.status(400).json(["usuario no registrado"])
         const contraselog = await bcrypt.compare(contrasena,UsuarioLog.contrasena)
-        if (!contraselog) return res.status(400).json({message:"Contraseña incorrecta"})
+        if (!contraselog) return res.status(400).json(["Contraseña incorrecta"])
         const token =  await CreateToken({id:UsuarioLog.id})
-        res.cookie("token",token)
+        const RolEncontrado = await Rol.findOne({_id:UsuarioLog.rol})
+        res.cookie("Token",token)
         res.status(200).json({
             Email:UsuarioLog.email,
-            Rol:UsuarioLog.rol,
+            Rol:RolEncontrado.tipo_Rol,
             token:token
         })  
     } catch (error) {
         console.log(error)
-        res.status(400).json({message: error.message})
+        res.status(400).json([error.message])
         
     }
 };

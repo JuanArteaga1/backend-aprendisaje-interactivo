@@ -28,11 +28,7 @@ exports.createUsuarios = async (req, res) => {
             NumeroIdentificacion:identificacion
         })
         const PersonaSave = await NewPersona.save()
-        const token =  await CreateToken({rol: RolEncontrado.tipo_Rol})
-        res.cookie("token",token)
-        res.status(200).json({
-            token: token
-        })
+        res.status(200).json({ })
         
     } catch (error) {
         console.log(error.message)  

@@ -18,6 +18,11 @@ const ProyectoSchema = new Schema({
         type: String,
         required: true
     },
+    Materia: {
+        type: Array, 
+        required: true,
+        ref: 'Materias' 
+    },
     autores: {
         type: Array, 
         required: true,
