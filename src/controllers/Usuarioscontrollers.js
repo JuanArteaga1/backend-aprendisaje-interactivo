@@ -10,6 +10,11 @@ const CreateToken = require("../libs/jwt")
 
 //creamos un nuevo estudiante
 exports.createUsuarios = async (req, res) => {
+
+    
+    const {Nombre,identificacion,email,contrasena,Codigo,rol,estado,funcion} = req.body
+    const RolEncontrado = await Rol.findOne({tipo_Rol:rol})
+
     const { Nombre, identificacion, email, contrasena, Codigo, rol, estado, funcion } = req.body
 
     const identificacionEncontada = await Persona.findOne({ NumeroIdentificacion: identificacion });
@@ -28,7 +33,6 @@ exports.createUsuarios = async (req, res) => {
     }
 
     const RolEncontrado = await Rol.findOne({ tipo_Rol: rol })
-
     try {
         const contraseñahash = await bcrypt.hash(contrasena, 8)
         const NewUser = new Usuario({
@@ -46,12 +50,12 @@ exports.createUsuarios = async (req, res) => {
             NumeroIdentificacion: identificacion
         })
         const PersonaSave = await NewPersona.save()
+
         const token = await CreateToken({ rol: RolEncontrado.tipo_Rol })
         res.cookie("token", token)
         res.status(200).json({
             token: token
         })
-
     } catch (error) {
         console.log("error entro")
         console.log(error.message)

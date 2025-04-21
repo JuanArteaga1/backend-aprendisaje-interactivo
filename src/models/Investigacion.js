@@ -31,6 +31,11 @@ const InvestigacionSchema = new Schema({
         required: true,
         ref: 'Usuarios'
     },
+    Materia: {
+        type: Array, 
+        required: true,
+        ref: 'Materias' 
+    },
     fechaPublicacion: {
         type: Date,
         required: true
