@@ -1,7 +1,7 @@
 const { z } = require("zod");
 
-exports.SubirPodtcasSchema = z.object({
- titulo: z.string({
+exports.SubirPodcastSchema = z.object({
+  titulo: z.string({
     required_error: "El título es obligatorio",
   }).min(3, { message: "El título debe tener al menos 3 caracteres" }),
 
@@ -26,10 +26,5 @@ exports.SubirPodtcasSchema = z.object({
 
   UrlAudio: z.string({
     required_error: "El url del audio es obligatorio",
-  }).min(1, { message: "Debes añadir un url" }),
-
-  ArchivoImagen: z.string({
-    required_error: "La imagen es obligatorio",
-  }).min(1, { message: "Debes añadir una imagen" }),
+  }).url({ message: "Debe ser una URL válida" }),
 });
-  

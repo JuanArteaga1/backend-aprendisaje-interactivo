@@ -29,6 +29,7 @@ exports.getAllPodtcasId = async (req, res) => {  // ✅ Ahora coincide con la im
 //creamos un nuevo estudiante
 exports.createPodtcas = async (req, res) => {
     try {
+        req.body.ArchivoImagen = `/uploads/${req.file.filename}`
         const Podtcas = await PodtcasServices.createPodtcas(req.body);
         res.status(201).json(Podtcas);
     } catch (error) {
