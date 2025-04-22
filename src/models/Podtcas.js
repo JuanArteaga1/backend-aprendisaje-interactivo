@@ -33,10 +33,10 @@ const PodtcasSchema = new Schema({
         required: true
     },
     materia: {
-        type: mongoose.Schema.Types.ObjectId, //ObjectId es un tipo especial de Mongoose utilizado para hacer referencia a otro documento.Permite establecer relaciones entre diferentes colecciones de MongoDB.
+        type: String,
         ref: 'Materia',
         required: true
-    }
+      }
 });
 
 
