@@ -8,4 +8,4 @@ const router = Router();
 router.route("/").get(GetSimulacionesAll).post(createSimulaciones);
 router.route("/:id").get(getSimulacionesId).put(PutSimulacionesId).delete(DeleteSimulacionesId);
 
-module.exports =  router;Ñ
+module.exports =  router;
