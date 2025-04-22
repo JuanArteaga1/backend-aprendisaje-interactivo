@@ -10,15 +10,18 @@ const ProyectoSchema = new Schema({
         type: String,
         required: true
     },
-    urlArchivo: {
+    urlArchivoapk: {
         type: String,
         required: true
     },
-    estado: {
+    urlDoc: {
         type: String,
         required: true
     },
-
+    urlimg: {
+        type: String,
+        required: true
+    },
     autores: {
         type: Array,
         required: true,
