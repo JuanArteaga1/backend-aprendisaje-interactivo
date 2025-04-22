@@ -1,6 +1,6 @@
 const { z } = require("zod");
 
-exports.SubirProyectosSchema = z.object({
+exports.SubirSimulacionesSchema = z.object({
   nombre_proyecto: z.string({
     required_error: "El nombre completo es obligatorio",
   }).min(3, { message: "El nombre debe tener al menos 3 caracteres" }),
@@ -28,16 +28,7 @@ exports.SubirProyectosSchema = z.object({
     required_error: "La materia es obligatoria",
   }).min(4, { message: "Debes ingresar una materia" }),
 
-  urlArchivoapk: z.string({
-    required_error: "El url es obligatorio",
-  }).min(1, { message: "Debes añadir un url" }),
-
-  urlDoc: z.string({
-    required_error: "El url es obligatorio",
-  }).min(1, { message: "Debes añadir un url" }),
-
-  urlimg: z.string({
+  urlArchivo: z.string({
     required_error: "El url es obligatorio",
   }).min(1, { message: "Debes añadir un url" }),
 });
-  
