@@ -1,11 +1,19 @@
-// src/middlewares/multerConfig.js
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
+
+// Ruta de la carpeta de destino
+const uploadDir = path.join(__dirname, "..", "..", "uploads");
+
+// Asegúrate de que la carpeta exista
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true }); // Crea la carpeta si no existe
+}
 
 // Configuración del almacenamiento
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "uploads/"); // Carpeta donde se guardan los archivos
+        cb(null, uploadDir); // Usa la carpeta que aseguramos que existe
     },
     filename: (req, file, cb) => {
         const ext = path.extname(file.originalname);
@@ -14,9 +22,9 @@ const storage = multer.diskStorage({
     },
 });
 
-// Filtros para validar el tipo de archivo (opcional)
+// Filtro de archivos
 const fileFilter = (req, file, cb) => {
-    console.log("entro")
+
     try {
         const allowedTypes = ["image/png", "image/jpeg", "image/jpg", "audio/mpeg", "audio/mp3"];
         if (allowedTypes.includes(file.mimetype)) {
@@ -24,13 +32,12 @@ const fileFilter = (req, file, cb) => {
         } else {
             cb(new Error("Tipo de archivo no permitido"), false);
         }
-
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 };
 
-// Crear el middleware
+// Middleware
 const upload = multer({ storage, fileFilter });
 
 module.exports = upload;
