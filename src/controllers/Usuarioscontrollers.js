@@ -10,13 +10,7 @@ const CreateToken = require("../libs/jwt")
 
 //creamos un nuevo estudiante
 exports.createUsuarios = async (req, res) => {
-
-    
     const {Nombre,identificacion,email,contrasena,Codigo,rol,estado,funcion} = req.body
-    
-
-    
-
     const identificacionEncontada = await Persona.findOne({ NumeroIdentificacion: identificacion });
     if (identificacionEncontada) {
         return res.status(400).json({ errors: [{ msg: "Número de identificación ya registrado" }] });
