@@ -7,7 +7,7 @@ exports.SubirPodcastSchema = z.object({
 
   autores: z.string({
     required_error: "El nombre de los autores es obligatorio",
-  }).min(5, { message: "El nombre de los autores no puede estar vacío" }),
+  }).min(5, { message: "El nombre debe tener al menos 5 caracteres" }),
 
   fechaPublicacion: z.coerce.date({
     required_error: "La fecha es obligatoria",
