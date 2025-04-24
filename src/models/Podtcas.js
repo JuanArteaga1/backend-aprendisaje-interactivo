@@ -18,11 +18,6 @@ const PodtcasSchema = new Schema({
         type: String,
         required: true
     },
-    Materia: {
-        type: Array, 
-        required: true,
-        ref: 'Materias' 
-    },
     autores: {
         type: Array, // ✅ Usa 'Schema.Types.ObjectId'
         required: true,
