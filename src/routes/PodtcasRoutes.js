@@ -2,7 +2,7 @@ const {Router} = require("express");
 const { getAllPodtcas,getAllPodtcasId,createPodtcas, updatedPodtcasId,deletePodtcas} = require( "../controllers/PodtcasControllers.js"); 
 const {ValidacionSchema} = require('../middlewares/validacionMiddlewares')
 const {SubirPodcastSchema} = require("../schemas/PodtcasSchema.js")
-const { GuardarImagen, upload } = require("../middlewares/Podcastmulter");
+const { GuardarImagen, upload } = require("../middlewares/MulterConfig.js");
 
 
 

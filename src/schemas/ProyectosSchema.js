@@ -7,7 +7,7 @@ exports.SubirProyectosSchema = z.object({
 
   autores: z.string({
     required_error: "El nombre de los autores es obligatorio",
-  }).min(5, { message: "El nombre de los autores no puede estar vacío" }),
+  }).min(5, { message: "El nombre de los autores al menos 5 caracteres" }),
 
   fechaPublicacion: z.coerce.date({
     required_error: "La fecha es obligatoria",
@@ -15,7 +15,6 @@ exports.SubirProyectosSchema = z.object({
   }).min(new Date("2024-01-01"), {
     message: "La fecha debe ser posterior a enero 2024",
   }),
-
   categoriaId: z.string({
     required_error: "La categoría es obligatoria",
   }).min(1, { message: "Debes seleccionar una categoría" }),
@@ -27,17 +26,5 @@ exports.SubirProyectosSchema = z.object({
   materia: z.string({
     required_error: "La materia es obligatoria",
   }).min(4, { message: "Debes ingresar una materia" }),
-
-  urlArchivoapk: z.string({
-    required_error: "El url es obligatorio",
-  }).min(1, { message: "Debes añadir un url" }),
-
-  urlDoc: z.string({
-    required_error: "El url es obligatorio",
-  }).min(1, { message: "Debes añadir un url" }),
-
-  urlimg: z.string({
-    required_error: "El url es obligatorio",
-  }).min(1, { message: "Debes añadir un url" }),
 });
   

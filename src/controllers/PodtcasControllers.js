@@ -1,6 +1,6 @@
 
 const PodtcasServices = require('../services/PodtcasServices');
-const { GuardarImagen, upload } = require("../middlewares/Podcastmulter");
+const { GuardarImagen, upload } = require("../middlewares/MulterConfig");
 
 exports.getAllPodtcas = async (req, res) => {
     try {
@@ -23,9 +23,7 @@ exports.getAllPodtcasId = async (req, res) => {  // ✅ Ahora coincide con la im
 
 exports.createPodtcas = async (req, res) => {
     try {
-        console.log("entro a aguardar imagen 2")
         const RutaImagen = GuardarImagen(req,res)
-        console.log("salido a aguardar imagen")
         req.body.ArchivoImagen = RutaImagen
         const newPodtcas = await PodtcasServices.createPodtcas(req.body);
         res.status(201).json(newPodtcas);
