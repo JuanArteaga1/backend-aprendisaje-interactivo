@@ -1,8 +1,17 @@
 const Proyectos = require('../models/Proyectos');
 const ProyectosService = require('../services/ProyectosServices');
+const { GuardarImagen,GuardarAPK,GuardarDocumento } = require("../middlewares/MulterConfig");
+
 //CONTROLADOR PARA CREAR PERSONA
 exports.createProyectos = async (req, res) => {
     try {
+        const RutaImagen = await GuardarImagen(req,res)
+        const RutaApk = await GuardarAPK(req,res)
+        const RutaDocs = await GuardarDocumento(req,res)
+        req.body.urlimg = RutaImagen
+        req.body.urlArchivoapk = RutaApk
+        req.body.urlDoc = RutaDocs
+
         const Proyectos = await ProyectosService.createProyectos(req.body);
         res.status(201).json(Proyectos);
     } catch (error) {
