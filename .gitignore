@@ -46,3 +46,12 @@ dist
 *.gz
 *.exe
 *.bin
+
+# Ignorar archivos de video y audio
+*.mp4
+*.mp4a
+
+*.mp3
+
+# Ignorar todo el contenido de la carpeta temp
+temp/

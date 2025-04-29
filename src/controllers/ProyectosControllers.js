@@ -1,16 +1,20 @@
 const Proyectos = require('../models/Proyectos');
 const ProyectosService = require('../services/ProyectosServices');
 const { GuardarImagen,GuardarAPK,GuardarDocumento } = require("../middlewares/MulterConfig");
+const {MateriaBuscar,categoriaBuscar} = require("../controllers/MateriaCategoriaController")
 
 //CONTROLADOR PARA CREAR PERSONA
 exports.createProyectos = async (req, res) => {
     try {
+        req.body.materia = await MateriaBuscar(req)
+        req.body.categoriaId = await categoriaBuscar(req)
         const RutaImagen = await GuardarImagen(req,res)
         const RutaApk = await GuardarAPK(req,res)
         const RutaDocs = await GuardarDocumento(req,res)
         req.body.urlimg = RutaImagen
         req.body.urlArchivoapk = RutaApk
         req.body.urlDoc = RutaDocs
+        
 
         const Proyectos = await ProyectosService.createProyectos(req.body);
         res.status(201).json(Proyectos);
