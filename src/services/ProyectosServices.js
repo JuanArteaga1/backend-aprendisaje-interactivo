@@ -3,10 +3,15 @@ const ProyectosModel = require('../models/Proyectos');
 
 
 exports.createProyectos = async (Proyectos) => {
-    console.log(Proyectos)
+    try {
+        console.log(Proyectos)
     const newproyectos = new ProyectosModel(Proyectos)
     await newproyectos.save()
     return newproyectos
+    } catch (error) {
+        console.log(error)
+        
+    }
 }
 exports.getAllProyectos = async () => {
     const Proyectos = await ProyectosModel.find();
