@@ -28,7 +28,4 @@ exports.SubirSimulacionesSchema = z.object({
     required_error: "La materia es obligatoria",
   }).min(4, { message: "Debes ingresar una materia" }),
 
-  urlArchivo: z.string({
-    required_error: "El url es obligatorio",
-  }).min(1, { message: "Debes añadir un url" }),
 });
