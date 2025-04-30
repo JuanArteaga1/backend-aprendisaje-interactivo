@@ -1,5 +1,6 @@
 exports.ValidacionSchema = (schema) => (req, res, next) => {
     try {
+        console.log("entro")
         const parsed = schema.parse(req.body);
         next();
     } catch (error) {
