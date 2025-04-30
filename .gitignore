@@ -55,3 +55,4 @@ dist
 
 # Ignorar todo el contenido de la carpeta temp
 temp/
+APK/
