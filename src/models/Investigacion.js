@@ -10,24 +10,24 @@ const InvestigacionSchema = new Schema({
         type: String,
         required: true
     },
-    ArchivoPdf: {
+    urlDoc: {
         type: String,
         required: true
     },
-    ArchivoImg: {
+    urlimg: {
         type: String,
         required: true
     },
-    UrlArticulo: {
+    urlArticulo: {
         type: String,
         required: true
     },
-    UrlDoi: {
+    urlDoi: {
         type: String,
         required: true
     },
     autores: {
-        type: Array,
+        type: String,
         required: true,
         ref: 'Usuarios'
     },

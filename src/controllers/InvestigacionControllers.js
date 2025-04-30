@@ -1,8 +1,20 @@
 const InvestigacionService = require('../services/InvestigacionServices');
+const { MateriaBuscar, categoriaBuscar } = require("../controllers/MateriaCategoriaController")
+const { GuardarImagen, GuardarAPK, GuardarDocumento } = require("../middlewares/MulterConfig");
+
 
 // CONTROLADOR PARA CREAR INVESTIGACIÓN
 exports.createInvestigacion = async (req, res) => {
     try {
+        console.log("entro 1")
+        req.body.materia = await MateriaBuscar(req)
+        console.log("entro 2")
+        const RutaImagen = await GuardarImagen(req, res)
+        console.log("entro 3")
+        const RutaDocs = await GuardarDocumento(req, res)
+        console.log("entro 4")
+        req.body.urlimg = RutaImagen
+        req.body.urlDoc = RutaDocs
         const investigacion = await InvestigacionService.createInvestigacion(req.body);
         res.status(201).json(investigacion);
     } catch (error) {
