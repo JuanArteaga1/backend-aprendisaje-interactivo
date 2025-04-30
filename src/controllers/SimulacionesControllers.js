@@ -1,9 +1,20 @@
 // controllers/SimulacionesControllers.js
 const SimulacionesService = require('../services/SimulacionesServices');
+const { MateriaBuscar, categoriaBuscar } = require("../controllers/MateriaCategoriaController")
 
 // CREAR
 exports.createSimulaciones = async (req, res) => {
   try {
+    req.body.materia = await MateriaBuscar(req)
+    req.body.categoriaId = await categoriaBuscar(req)
+    const RutaImagen = await GuardarImagen(req, res)
+    const RutaApk = await GuardarAPK(req, res)
+    const RutaDocs = await GuardarDocumento(req, res)
+    req.body.urlimg = RutaImagen
+    req.body.urlArchivoapk = RutaApk
+    req.body.urlDoc = RutaDocs
+    console.log("entro")
+
     const simulacion = await SimulacionesService.createSimulaciones(req.body);
     res.status(201).json(simulacion);
   } catch (error) {
