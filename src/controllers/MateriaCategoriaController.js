@@ -2,6 +2,7 @@ const Materia = require("../models/Materia")
 const categoría = require("../models/Categoria")
 
 exports.MateriaBuscar = async(req) =>{
+    console.log(req.body)
     const Materiabuscar = await Materia.findOne({nombre:req.body.materia})
     IdMateria = Materiabuscar._id
     return IdMateria
