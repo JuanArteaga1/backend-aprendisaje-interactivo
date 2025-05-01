@@ -1,6 +1,8 @@
 // controllers/SimulacionesControllers.js
 const SimulacionesService = require('../services/SimulacionesServices');
 const { MateriaBuscar, categoriaBuscar } = require("../controllers/MateriaCategoriaController")
+const { GuardarImagen,GuardarAPK,GuardarDocumento } = require("../middlewares/MulterConfig");
+
 
 // CREAR
 exports.createSimulaciones = async (req, res) => {
@@ -13,7 +15,6 @@ exports.createSimulaciones = async (req, res) => {
     req.body.urlimg = RutaImagen
     req.body.urlArchivoapk = RutaApk
     req.body.urlDoc = RutaDocs
-    console.log("entro")
 
     const simulacion = await SimulacionesService.createSimulaciones(req.body);
     res.status(201).json(simulacion);

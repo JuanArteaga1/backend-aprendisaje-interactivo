@@ -4,7 +4,6 @@ const SimulacionesModel = require('../models/Simulaciones');
 
 exports.createSimulaciones = async (Simulaciones) => {
     try {
-        console.log("entro")
         const newsimulaciones = new SimulacionesModel(Simulaciones)
         await newsimulaciones.save()
         return newsimulaciones

@@ -19,15 +19,10 @@ exports.getAllPodtcasId = async (id) => {
 
 //creamos un nuevo estudiante
 exports.createPodtcas = async (Podtcas) => {
-    try {
     const newPodtcas = new PodtcasModel(Podtcas);
     await newPodtcas.save();
     return newPodtcas;
-        
-    } catch (error) {
-        console.log(error)
-        
-    }
+
 };
 
 //actualizamos un estudiante

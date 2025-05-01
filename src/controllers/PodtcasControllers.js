@@ -4,7 +4,11 @@ const { GuardarImagen, upload } = require("../middlewares/MulterConfig");
 
 exports.getAllPodtcas = async (req, res) => {
     try {
+
         const Podtcas = await PodtcasServices.getAllPodtcas();
+        Podtcas.forEach(item => {
+            const rutaimagen = item.ArchivoImagen
+        });
         res.status(200).json(Podtcas);
     } catch (error) {
         res.status(404).json({ message: error.message });
