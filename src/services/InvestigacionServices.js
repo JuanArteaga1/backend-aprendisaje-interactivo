@@ -4,7 +4,6 @@ const InvestigacionModel = require('../models/Investigacion');
 
 exports.createInvestigacion = async (Investigacion) => {
     try {
-        console.log(Investigacion)
         const newinvestigacion = new InvestigacionModel(Investigacion)
         await newinvestigacion.save()
         return newinvestigacion

@@ -1,7 +1,7 @@
 const { z } = require("zod");
 
 exports.SubirPodcastSchema = z.object({
-  titulo: z.string({
+  nombre_proyecto: z.string({
     required_error: "El título es obligatorio",
   }).min(3, { message: "El título debe tener al menos 3 caracteres" }),
 
