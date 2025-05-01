@@ -9,13 +9,16 @@ const GuardarImagen = (req, res) => {
         const { seccion } = req.body
         const file =req.files?.portada?.[0];
         if (!file) return res.status(400).send("No se subió archivo")
-        const seccionDir = path.join("uploads", seccion, "img")
+        const seccionDir = path.join("src","uploads", seccion, "img")
         if (!fs.existsSync(seccionDir)) {
             fs.mkdirSync(seccionDir, { recursive: true })
         }
         const ext = path.extname(file.originalname)
         const newFilePath = path.join(seccionDir, file.originalname)
         fs.renameSync(file.path, newFilePath)
+        console.log(newFilePath)
+        
+
         return newFilePath
     } catch (error) {
         console.log(error)
@@ -28,7 +31,7 @@ const GuardarDocumento = (req, res) => {
         const { seccion } = req.body
         const file =req.files?.urlDoc?.[0];
         if (!file) return res.status(400).send("No se subió archivo")
-        const seccionDir = path.join("uploads", seccion, "Docs")
+        const seccionDir = path.join("src","uploads", seccion, "Docs")
         if (!fs.existsSync(seccionDir)) {
             fs.mkdirSync(seccionDir, { recursive: true })
         }
@@ -46,7 +49,7 @@ const GuardarAPK = (req, res) => {
         const { seccion } = req.body
         const file =req.files?.urlArchivoapk?.[0];
         if (!file) return res.status(400).json("No se subió archivo")
-        const seccionDir = path.join("uploads", seccion, "APK")
+        const seccionDir = path.join("src","uploads", seccion, "APK")
         if (!fs.existsSync(seccionDir)) {
             fs.mkdirSync(seccionDir, { recursive: true })
         }
@@ -59,6 +62,8 @@ const GuardarAPK = (req, res) => {
         res.status(400).send("ERROR AL SUBIR EL APK")
     }
 }
+
+
 
  const upload = multer({ dest: "uploads/temp/" });
 

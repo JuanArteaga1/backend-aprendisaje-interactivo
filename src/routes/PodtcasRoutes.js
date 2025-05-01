@@ -9,7 +9,7 @@ const { GuardarImagen, upload } = require("../middlewares/MulterConfig.js");
 const router = Router();
 
 
-router.route("/").get(getAllPodtcas).post(upload.single("portada"),ValidacionSchema(SubirPodcastSchema),createPodtcas);;
+router.route("/").get(getAllPodtcas).post(upload.fields([{name:"portada",maxCount:1}]),ValidacionSchema(SubirPodcastSchema),createPodtcas);;
 router.route("/:id").get(getAllPodtcasId).put(updatedPodtcasId).delete(deletePodtcas);
 
 module.exports =  router;
