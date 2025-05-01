@@ -14,9 +14,9 @@ exports.login = async (req, res) => {
     const {email,contrasena} = req.body
     try {
         const UsuarioLog = await Usuario.findOne({email})
-        if ( !UsuarioLog) return res.status(400).json(["usuario no registrado"])
+        if ( !UsuarioLog) return res.status(400).json({ errors: [{ field: "email", msg: "Usuario no registrado" }] });
         const contraselog = await bcrypt.compare(contrasena,UsuarioLog.contrasena)
-        if (!contraselog) return res.status(400).json(["Contraseña incorrecta"])
+        if (!contraselog) return res.status(400).json({ errors: [{ field: "contrasena", msg: "Contraseña incorrecta" }] });
         const token =  await CreateToken({id:UsuarioLog.id})
         const RolEncontrado = await Rol.findOne({_id:UsuarioLog.rol})
         res.cookie("Token",token)

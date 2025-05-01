@@ -1,4 +1,4 @@
-const Proyectos = require('../models/Proyectos');
+
 const ProyectosService = require('../services/ProyectosServices');
 const { GuardarImagen,GuardarAPK,GuardarDocumento } = require("../middlewares/MulterConfig");
 const {MateriaBuscar,categoriaBuscar} = require("../controllers/MateriaCategoriaController")

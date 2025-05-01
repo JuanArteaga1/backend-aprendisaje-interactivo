@@ -1,10 +1,5 @@
 const PodtcasModel = require('../models/Podtcas');
 
-/*
-definimos los metodos que vamos a utilizar desde el controlador
-para manejar los estudiantes
-*/
-
 //obtenemos todos los estudiantes
 exports.getAllPodtcas = async () => {
     const Podtcas = await PodtcasModel.find();

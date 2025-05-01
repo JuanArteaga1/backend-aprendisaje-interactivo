@@ -16,6 +16,7 @@ const Rlogin = require('./routes/LoginRoutes.js');
 const Rfuncion = require('./routes/FuncionRoutes.js');
 const RMateria = require('./routes/MateriaRoutes.js');
 const RSimulaciones = require('./routes/SimulacionesRoutes.js');
+const RTraerProyectos = require('./routes/TraerProyectosRoutes.js')
 
 const app = express();
 
@@ -38,6 +39,8 @@ app.use("/login", Rlogin);
 app.use("/Funcion", Rfuncion);
 app.use("/Materia", RMateria);
 app.use("/Simulaciones", RSimulaciones);
+app.use("/TraerProyectos", RTraerProyectos);
+
 
 // Exportación
 module.exports = app;
