@@ -9,7 +9,6 @@ const {LoginSchema} = require('../schemas/LoginSchema')
 const router = Router();
 router.route("/").post(ValidacionSchema(LoginSchema),login)
 router.route("/out").post(loginout)
-router.route("/out").post(loginout)
 router.route("/Profile").get(AutenticacionRequerida,Profile)
 
 module.exports =  router;
