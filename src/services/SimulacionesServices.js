@@ -16,7 +16,7 @@ exports.getAllSimulaciones = async () => {
     return Simulaciones;
 };
 exports.getSimulacionesId = async (id) => {
-    const Simulaciones = await SimulacionesModel.findById(id);
+    const Simulaciones = await SimulacionesModel.find({Usuario:id});
     return Simulaciones;
 };
 exports.PutSimulacionesId = async (id, Simulaciones) => {

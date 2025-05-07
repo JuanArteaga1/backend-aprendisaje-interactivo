@@ -39,6 +39,11 @@ const InvestigacionSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Materia',
         required: true
+    },
+    Usuario: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Usuarios',
+        required: true
     }
 });
 module.exports = mongoose.model("Investigacion", InvestigacionSchema)

@@ -27,5 +27,8 @@ exports.SubirSimulacionesSchema = z.object({
   materia: z.string({
     required_error: "La materia es obligatoria",
   }).min(4, { message: "Debes ingresar una materia" }),
+  Usuario: z.string({
+      required_error: "Id no encontrado",
+    })
 
 });

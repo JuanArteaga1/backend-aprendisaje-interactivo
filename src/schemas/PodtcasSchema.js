@@ -27,4 +27,7 @@ exports.SubirPodcastSchema = z.object({
   UrlAudio: z.string({
     required_error: "El url del audio es obligatorio",
   }).url({ message: "Debe ser una URL válida" }),
+  Usuario: z.string({
+      required_error: "Id no encontrado",
+    })
 });

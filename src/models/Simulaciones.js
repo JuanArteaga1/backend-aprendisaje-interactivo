@@ -36,8 +36,13 @@ const SimulacionesSchema = new Schema({
         required: true
     },
     materia: {
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Materia',
+        required: true
+    },
+    Usuario: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Usuarios',
         required: true
     }
 });

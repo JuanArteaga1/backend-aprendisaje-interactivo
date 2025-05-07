@@ -16,7 +16,7 @@ exports.getAllInvestigacion = async () => {
     return Investigacion;
 };
 exports.getInvestigacionId = async (id) => {
-    const Investigacion = await InvestigacionModel.findById(id);
+    const Investigacion = await InvestigacionModel.find({Usuario:id});
     return Investigacion;
 };
 exports.PutInvestigacionId = async (id, Investigacion) => {

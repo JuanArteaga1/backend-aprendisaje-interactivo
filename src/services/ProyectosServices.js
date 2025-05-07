@@ -1,10 +1,10 @@
 const ProyectosModel = require('../models/Proyectos');
+const Usuarios = require('../models/Usuarios');
 
 
 
 exports.createProyectos = async (Proyectos) => {
     try {
-        console.log(Proyectos)
     const newproyectos = new ProyectosModel(Proyectos)
     await newproyectos.save()
     return newproyectos
@@ -18,7 +18,7 @@ exports.getAllProyectos = async () => {
     return Proyectos;
 };
 exports.getProyectosId = async (id) => {
-    const Proyectos = await ProyectosModel.findById(id);
+    const Proyectos = await ProyectosModel.find({Usuario:id});
     return Proyectos;
 };
 exports.PutProyectosId = async (id, Proyectos) => {
