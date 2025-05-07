@@ -31,8 +31,13 @@ const PodtcasSchema = new Schema({
         type: String,
         ref: 'Materia',
         required: true
-      }
+    },
+    Usuario: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Usuarios',
+        required: true
+    }
 });
 
 
-module.exports = mongoose.model("Podtcas",PodtcasSchema)
+module.exports = mongoose.model("Podtcas", PodtcasSchema)

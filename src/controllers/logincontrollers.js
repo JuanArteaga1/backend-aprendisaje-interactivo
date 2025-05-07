@@ -21,6 +21,7 @@ exports.login = async (req, res) => {
         const RolEncontrado = await Rol.findOne({_id:UsuarioLog.rol})
         res.cookie("Token",token)
         res.status(200).json({
+            Id:UsuarioLog.id,
             Email:UsuarioLog.email,
             Rol:RolEncontrado.tipo_Rol,
             token:token

@@ -31,4 +31,7 @@ exports.SubirInvestigacionSchema = z.object({
   }).min(new Date("2024-01-01"), {
     message: "La fecha debe ser posterior a enero 2024",
   }),
+  Usuario: z.string({
+    required_error: "Id no encontrado",
+  })
 });

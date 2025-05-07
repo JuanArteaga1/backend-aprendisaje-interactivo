@@ -16,9 +16,6 @@ const GuardarImagen = (req, res) => {
         const ext = path.extname(file.originalname)
         const newFilePath = path.join(seccionDir, file.originalname)
         fs.renameSync(file.path, newFilePath)
-        console.log(newFilePath)
-        
-
         return newFilePath
     } catch (error) {
         console.log(error)

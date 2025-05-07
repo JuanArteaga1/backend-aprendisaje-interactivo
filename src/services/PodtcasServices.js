@@ -8,7 +8,7 @@ exports.getAllPodtcas = async () => {
 
 //obtenemos un estudiante por su id
 exports.getAllPodtcasId = async (id) => {
-    const Podtcas = await PodtcasModel.findById(id);
+    const Podtcas = await PodtcasModel.find({Usuario:id});
     return Podtcas;
 };
 
