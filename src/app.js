@@ -25,7 +25,9 @@ app.use(cors({
   credentials: true
 }));
 
-app.use('/src/uploads', express.static(path.join(__dirname, 'uploads')));
+// Hacemos que los archivos dentro de la carpeta 'uploads' sean accesibles públicamente desde la ruta '/uploads'
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("dev"));
