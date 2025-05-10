@@ -28,6 +28,6 @@ exports.SubirProyectosSchema = z.object({
   }).min(4, { message: "Debes ingresar una materia" }),
   Usuario: z.string({
     required_error: "Id no encontrado",
-  })
+  }),
 });
   
