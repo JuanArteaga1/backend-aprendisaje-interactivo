@@ -12,7 +12,7 @@ exports.createInvestigacion = async (Investigacion) => {
     }
 }
 exports.getAllInvestigacion = async () => {
-    const Investigacion = await InvestigacionModel.find();
+    const Investigacion = await InvestigacionModel.find().populate('materia');
     return Investigacion;
 };
 exports.getInvestigacionId = async (id) => {
