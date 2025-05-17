@@ -8,6 +8,6 @@ const { GuardarImagen, upload } = require("../middlewares/MulterConfig.js");
 const router = Router();
 
 router.route("/").get(GetInvestigacionAll).post(upload.fields([{ name: "portada",maxCount: 1},{name:"urlDoc",maxCount: 1 }]),ValidacionSchema(SubirInvestigacionSchema),createInvestigacion);
-router.route("/:id").get(GetInvestigacionId).put(PutInvestigacionId).delete(DeleteInvestigacionId);
+router.route("/:id").get(GetInvestigacionId).put(upload.fields([{ name: "portada",maxCount: 1},{name:"urlDoc",maxCount: 1 }]),ValidacionSchema(SubirInvestigacionSchema),PutInvestigacionId).delete(DeleteInvestigacionId);
 
 module.exports =  router;

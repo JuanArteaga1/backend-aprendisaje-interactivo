@@ -10,6 +10,6 @@ const router = Router();
 
 
 router.route("/").get(getAllPodtcas).post(upload.fields([{name:"portada",maxCount:1}]),ValidacionSchema(SubirPodcastSchema),createPodtcas);;
-router.route("/:id").get(getAllPodtcasId).put(updatedPodtcasId).delete(deletePodtcas);
+router.route("/:id").get(getAllPodtcasId).put(upload.fields([{name:"portada",maxCount:1}]),ValidacionSchema(SubirPodcastSchema),updatedPodtcasId).delete(deletePodtcas);
 
 module.exports =  router;

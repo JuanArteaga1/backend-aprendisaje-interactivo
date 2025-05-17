@@ -1,6 +1,8 @@
 
 const PodtcasServices = require('../services/PodtcasServices');
-const { GuardarImagen, upload } = require("../middlewares/MulterConfig");
+const PodtcasModel = require('../models/Podtcas');
+const { GuardarImagen,ActualizarImagen } = require("../middlewares/MulterConfig");
+
 
 exports.getAllPodtcas = async (req, res) => {
     try {
@@ -27,6 +29,8 @@ exports.getAllPodtcasId = async (req, res) => {  // ✅ Ahora coincide con la im
 
 exports.createPodtcas = async (req, res) => {
     try {
+
+        console.log("llego aqui")
         const RutaImagen = GuardarImagen(req,res)
         req.body.ArchivoImagen = RutaImagen
         const newPodtcas = await PodtcasServices.createPodtcas(req.body);
@@ -39,6 +43,8 @@ exports.createPodtcas = async (req, res) => {
 
 exports.updatedPodtcasId = async (req, res) => {
     try {
+        const Ruta = await PodtcasModel.findById(req.params.id)
+        req.body.ArchivoImagen = await ActualizarImagen(req, res, Ruta.ArchivoImagen)
         const Podtcas = await PodtcasServices.updatedPodtcasId(req.params.id, req.body);
         res.status(200).json(Podtcas);
     } catch (error) {

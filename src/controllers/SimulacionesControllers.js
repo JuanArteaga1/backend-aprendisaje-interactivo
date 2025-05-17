@@ -1,7 +1,9 @@
 // controllers/SimulacionesControllers.js
 const SimulacionesService = require('../services/SimulacionesServices');
 const { MateriaBuscar, categoriaBuscar } = require("../controllers/MateriaCategoriaController")
-const { GuardarImagen,GuardarAPK,GuardarDocumento } = require("../middlewares/MulterConfig");
+const { GuardarImagen, GuardarAPK, GuardarDocumento,ActualizarApk,ActualizarDocumento,ActualizarImagen } = require("../middlewares/MulterConfig");
+const SimulacionesModel = require('../models/Simulaciones');
+
 
 
 // CREAR
@@ -46,6 +48,12 @@ exports.getSimulacionesId = async (req, res) => {
 // ACTUALIZAR
 exports.PutSimulacionesId = async (req, res) => {
   try {
+    const Ruta = await SimulacionesModel.findById(req.params.id)
+    req.body.materia = await MateriaBuscar(req)
+    req.body.urlimg = await ActualizarImagen(req, res, Ruta.urlimg)
+    req.body.urlDoc = await ActualizarDocumento(req, res, Ruta.urlDoc)
+    req.body.urlArchivoapk = await ActualizarApk(req, res, Ruta.urlArchivoapk)
+    req.body.categoriaId = await categoriaBuscar(req)
     const simulacion = await SimulacionesService.PutSimulacionesId(req.params.id, req.body);
     res.status(200).json(simulacion);
   } catch (error) {

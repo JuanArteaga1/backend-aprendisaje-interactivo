@@ -1,16 +1,15 @@
 const InvestigacionService = require('../services/InvestigacionServices');
 const { MateriaBuscar, categoriaBuscar } = require("../controllers/MateriaCategoriaController")
-const { GuardarImagen, GuardarAPK, GuardarDocumento } = require("../middlewares/MulterConfig");
+const { GuardarImagen, GuardarDocumento, ActualizarImagen,ActualizarDocumento } = require("../middlewares/MulterConfig");
+const investigaciones = require("../models/Investigacion")
 
 
 // CONTROLADOR PARA CREAR INVESTIGACIÓN
 exports.createInvestigacion = async (req, res) => {
     try {
         req.body.materia = await MateriaBuscar(req)
-        const RutaImagen = await GuardarImagen(req, res)
-        const RutaDocs = await GuardarDocumento(req, res)
-        req.body.urlimg = RutaImagen
-        req.body.urlDoc = RutaDocs
+        req.body.urlimg = await GuardarImagen(req, res)
+        req.body.urlDoc = await GuardarDocumento(req, res)
         const investigacion = await InvestigacionService.createInvestigacion(req.body);
         res.status(201).json(investigacion);
     } catch (error) {
@@ -41,6 +40,10 @@ exports.GetInvestigacionAll = async (req, res) => {
 // CONTROLADOR PARA ACTUALIZAR INVESTIGACIÓN POR ID
 exports.PutInvestigacionId = async (req, res) => {
     try {
+        const Ruta = await investigaciones.findById(req.params.id)
+        req.body.materia = await MateriaBuscar(req)
+        req.body.urlimg = await ActualizarImagen(req, res, Ruta.urlimg)
+        req.body.urlDoc = await ActualizarDocumento(req, res,Ruta.urlDoc)
         const investigacion = await InvestigacionService.PutInvestigacionId(req.params.id, req.body);
         res.status(200).json(investigacion);
     } catch (error) {

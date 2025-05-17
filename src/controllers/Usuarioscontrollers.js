@@ -1,7 +1,5 @@
 
 const UsuariosServices = require('../services/UsuariosServices');
-const PersonaServices = require('../services/PersonaServices');
-
 const Usuario = require("../models/Usuarios")
 const Persona = require("../models/Personas")
 const Rol = require('../models/Rol');

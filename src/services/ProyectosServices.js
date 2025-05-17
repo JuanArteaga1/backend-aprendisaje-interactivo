@@ -1,6 +1,6 @@
 // Importamos el modelo de Proyectos y de Usuarios
 const ProyectosModel = require('../models/Proyectos');
-const Usuarios = require('../models/Usuarios');
+
 
 // Crear un nuevo proyecto en la base de datos
 exports.createProyectos = async (Proyectos) => {
@@ -29,6 +29,7 @@ exports.getProyectosId = async (id) => {
 
 // Actualizar un proyecto por su ID
 exports.PutProyectosId = async (id, Proyectos) => {
+
     const ProyectosUpdate = await ProyectosModel.findByIdAndUpdate(id, Proyectos); // Actualiza el documento por ID
     return ProyectosUpdate;
 };

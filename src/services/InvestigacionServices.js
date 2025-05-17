@@ -21,7 +21,6 @@ exports.getInvestigacionId = async (id) => {
 };
 exports.PutInvestigacionId = async (id, Investigacion) => {
     const InvestigacionUpdate = await InvestigacionModel.findByIdAndUpdate(id, Investigacion, { new: true });
-
     return InvestigacionUpdate;
 };
 exports.DeleteInvestigacionId = async (id, Investigacion) => {
