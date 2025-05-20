@@ -12,7 +12,9 @@ exports.createSimulaciones = async (Simulaciones) => {
     }
 }
 exports.getAllSimulaciones = async () => {
-    const Simulaciones = await SimulacionesModel.find();
+    const Simulaciones = await SimulacionesModel.find()
+    .populate("materia")
+    .sort({ fechaPublicacion: -1 });
     return Simulaciones;
 };
 exports.getSimulacionesId = async (id) => {
