@@ -1,4 +1,6 @@
 const PodtcasModel = require('../models/Podtcas');
+const { ELiminarArchivos } = require("../middlewares/MulterConfig");
+
 
 //obtenemos todos los estudiantes
 exports.getAllPodtcas = async () => {
@@ -8,7 +10,7 @@ exports.getAllPodtcas = async () => {
 
 //obtenemos un estudiante por su id
 exports.getAllPodtcasId = async (id) => {
-    const Podtcas = await PodtcasModel.find({Usuario:id});
+    const Podtcas = await PodtcasModel.find({ Usuario: id });
     return Podtcas;
 };
 
@@ -28,6 +30,8 @@ exports.updatedPodtcasId = async (id, Podtcas) => {
 
 //eliminamos un estudiante
 exports.deletePodtcas = async (id) => {
+    const Ruta = await PodtcasModel.findById(id)
+    await ELiminarArchivos(Ruta.urlimg)
     await PodtcasModel.findByIdAndDelete(id);
     return true
 };
