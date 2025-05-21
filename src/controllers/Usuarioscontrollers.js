@@ -1,5 +1,6 @@
 
 const UsuariosServices = require('../services/UsuariosServices');
+const PersonaServices = require('../services/PersonaServices');
 const Usuario = require("../models/Usuarios")
 const Persona = require("../models/Personas")
 const Rol = require('../models/Rol');
@@ -91,6 +92,7 @@ exports.updatedUsuarioId = async (req, res) => {
 //eliminamos un estudiante
 exports.deleteUsuarios = async (req, res) => {
     try {
+        await PersonaServices.DeletePersonaId(req.params.id)
         await UsuariosServices.deleteUsuario(req.params.id);
         res.status(200).json({ message: "usuario deleted successfully" });
     } catch (error) {
