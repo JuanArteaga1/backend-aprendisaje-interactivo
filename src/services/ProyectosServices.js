@@ -1,5 +1,6 @@
 // Importamos el modelo de Proyectos y de Usuarios
 const ProyectosModel = require('../models/Proyectos');
+const { ELiminarArchivos } = require("../middlewares/MulterConfig");
 
 
 // Crear un nuevo proyecto en la base de datos
@@ -36,6 +37,10 @@ exports.PutProyectosId = async (id, Proyectos) => {
 
 // Eliminar un proyecto por su ID
 exports.DeleteProyectosId = async (id, Proyectos) => {
-    const ProyectosDelete = await ProyectosModel.findByIdAndDelete(id, Proyectos); // Elimina el documento por ID
+    const Ruta = await ProyectosModel.findById(id)
+    await ELiminarArchivos(Ruta.urlDoc)
+    await ELiminarArchivos(Ruta.urlimg)
+    await ELiminarArchivos(Ruta.urlArchivoapk)
+    const ProyectosDelete = await ProyectosModel.findByIdAndDelete(id); // Elimina el documento por ID
     return ProyectosDelete;
 };

@@ -1,4 +1,6 @@
 const SimulacionesModel = require('../models/Simulaciones');
+const { ELiminarArchivos } = require("../middlewares/MulterConfig");
+
 
 
 
@@ -18,7 +20,7 @@ exports.getAllSimulaciones = async () => {
     return Simulaciones;
 };
 exports.getSimulacionesId = async (id) => {
-    const Simulaciones = await SimulacionesModel.find({Usuario:id});
+    const Simulaciones = await SimulacionesModel.find({ Usuario: id });
     return Simulaciones;
 };
 exports.PutSimulacionesId = async (id, Simulaciones) => {
@@ -26,6 +28,10 @@ exports.PutSimulacionesId = async (id, Simulaciones) => {
     return SimulacionesUpdate;
 };
 exports.DeleteSimulacionesId = async (id, Simulaciones) => {
-    const SimulacionesDelete = await SimulacionesModel.findByIdAndDelete(id, Simulaciones);
+    const Ruta = await SimulacionesModel.findById(id)
+    await ELiminarArchivos(Ruta.urlDoc)
+    await ELiminarArchivos(Ruta.urlimg)
+    await ELiminarArchivos(Ruta.urlArchivoapk)
+    const SimulacionesDelete = await SimulacionesModel.findByIdAndDelete(id);
     return SimulacionesDelete;
 };
