@@ -20,7 +20,16 @@ exports.getAllUsuariosId = async (id) => {
 
 //actualizamos un estudiante
 exports.updatedUsuarioId = async (id, Usuario) => {
-    const updatedUsuario = await UsuariosModel.findByIdAndUpdate(id, Usuario);
+    const updatedUsuario = await UsuariosModel.findByIdAndUpdate(
+        id.trim(),
+        {
+            Codigo: Usuario.Codigo,
+            email: Usuario.email,
+            estado: Usuario.estado,
+            contrasena: Usuario.contrasena,
+        },
+        { new: true }
+    )
     return updatedUsuario;
 };
 

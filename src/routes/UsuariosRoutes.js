@@ -9,6 +9,6 @@ const router = Router();
 
 router.route('/C').get(GetPersonaUsuariosAll)
 router.route("/").get(getAllUsuarios).post(ValidacionSchema(RegistroDocenteSchema), createUsuarios);
-router.route("/:id").get(getAllUsuariosId).patch(updatedUsuarioId).delete(deleteUsuarios);
+router.route("/:id").get(getAllUsuariosId).put(ValidacionSchema(RegistroDocenteSchema),updatedUsuarioId).delete(deleteUsuarios);
 
 module.exports =  router;

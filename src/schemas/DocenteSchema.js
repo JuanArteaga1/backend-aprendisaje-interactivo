@@ -11,7 +11,8 @@ exports.RegistroDocenteSchema = z.object({
   
     Codigo: z.string({
       required_error: "El código del docente es obligatorio",
-    }).min(1, "El código del docente no puede estar vacío"),
+    }).min(1, "El código del docente no puede estar vacío")
+    .regex(/^\d+$/, "el Codigo debe contener solo números"),
   
     email: z.string({
       required_error: "El correo institucional es obligatorio",

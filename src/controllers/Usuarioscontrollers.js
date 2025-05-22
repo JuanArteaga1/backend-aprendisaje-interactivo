@@ -9,7 +9,7 @@ const CreateToken = require("../libs/jwt")
 
 //creamos un nuevo estudiante
 exports.createUsuarios = async (req, res) => {
-    const {Nombre,identificacion,email,contrasena,Codigo,rol,estado,funcion} = req.body
+    const { Nombre, identificacion, email, contrasena, Codigo, rol, estado, funcion } = req.body
     const identificacionEncontada = await Persona.findOne({ NumeroIdentificacion: identificacion });
     if (identificacionEncontada) {
         return res.status(400).json({ errors: [{ msg: "Número de identificación ya registrado" }] });
@@ -82,9 +82,15 @@ exports.getAllUsuariosId = async (req, res) => {  // ✅ Ahora coincide con la i
 //actualizamos un estudiante
 exports.updatedUsuarioId = async (req, res) => {
     try {
+        const identificacionEncontada = await Persona.findOne({ NumeroIdentificacion: req.body.identificacion });
+        if (identificacionEncontada) {
+            return res.status(400).json({ errors: [{ msg: "Número de identificación ya registrado" }] });
+        }
+        const Personas = await PersonaServices.PutPersonaId(req.params.id, req.body);
         const Usuario = await UsuariosServices.updatedUsuarioId(req.params.id, req.body);
         res.status(200).json(Usuario);
     } catch (error) {
+        console.log(error)
         res.status(404).json({ message: error.message });
     }
 };
