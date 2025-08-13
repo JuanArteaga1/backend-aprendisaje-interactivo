@@ -17,12 +17,12 @@ const Rfuncion = require('./routes/FuncionRoutes.js');
 const RMateria = require('./routes/MateriaRoutes.js');
 const RSimulaciones = require('./routes/SimulacionesRoutes.js');
 const RTraerProyectos = require('./routes/TraerProyectosRoutes.js')
+require('dotenv').config();
 
 const app = express();
-
 app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true
+  origin: process.env.Ruta_Coneccion_externa, // o '*', pero es mejor ser específico
+  credentials: true, // si usas cookies o auth basada en sesiones
 }));
 
 // Hacemos que los archivos dentro de la carpeta 'uploads' sean accesibles públicamente desde la ruta '/uploads'
