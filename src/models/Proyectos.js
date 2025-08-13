@@ -22,6 +22,10 @@ const ProyectoSchema = new Schema({
         type: String,
         required: true
     },
+    youtubeLink: {
+        type: String,
+        required: true
+    },
     autores: {
         type: Array,
         required: true,
