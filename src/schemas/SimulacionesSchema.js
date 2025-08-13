@@ -29,6 +29,23 @@ exports.SubirSimulacionesSchema = z.object({
   }).min(4, { message: "Debes ingresar una materia" }),
   Usuario: z.string({
       required_error: "Id no encontrado",
+    }),
+  youtubeLink: z.string()
+    .optional()
+    .refine((value) => {
+      if (!value) return true;
+      
+      const patterns = [
+        /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=[\w-]+(&[\w=&%-]*)?$/,
+        /^(https?:\/\/)?youtu\.be\/[\w-]+(\?[\w=&%-]*)?$/,
+        /^(https?:\/\/)?(www\.)?youtube\.com\/embed\/[\w-]+(\?[\w=&%-]*)?$/,
+        /^(https?:\/\/)?(www\.)?youtube\.com\/v\/[\w-]+(\?[\w=&%-]*)?$/,
+        /^(https?:\/\/)?(www\.)?youtube\.com\/shorts\/[\w-]+(\?[\w=&%-]*)?$/,
+      ];
+      
+      return patterns.some(pattern => pattern.test(value));
+    }, {
+      message: "Debe ser un enlace válido de YouTube"
     })
 
 });

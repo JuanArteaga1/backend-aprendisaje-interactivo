@@ -44,6 +44,10 @@ const SimulacionesSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Usuarios',
         required: true
-    }
+    },
+    youtubeLink: {
+        type: String,
+        required: true
+    },
 });
 module.exports = mongoose.model("Simulaciones", SimulacionesSchema)
