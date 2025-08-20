@@ -46,6 +46,7 @@ exports.GetProyectosAll = async (req, res) => {
 exports.PutProyectosId = async (req, res) => {
     try {
         const Ruta = await ProyectosModel.findById(req.params.id)
+        req.body.autores = JSON.parse(req.body.autores);
         req.body.materia = await MateriaBuscar(req)
         req.body.urlimg = await ActualizarImagen(req, res, Ruta.urlimg)
         req.body.urlDoc = await ActualizarDocumento(req, res, Ruta.urlDoc)
