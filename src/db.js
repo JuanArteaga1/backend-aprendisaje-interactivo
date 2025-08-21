@@ -1,8 +1,9 @@
 const mongoose = require( "mongoose");
+require('dotenv').config();
 
 exports.connectdb = async () => {
     try {
-        await mongoose.connect('mongodb+srv://root:133724@cluster0.eluxw.mongodb.net/proyectoWeb')
+        await mongoose.connect(process.env.base_de_datos)
         console.log('BASE DE DATOS CONECTADA')
         
     } catch (error) {
