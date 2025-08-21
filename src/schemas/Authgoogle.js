@@ -1,15 +1,12 @@
-
+require("dotenv").config();
 const nodemailer = require("nodemailer");
-
-// Mantener la conexión original con credenciales hardcodeadas
 exports.transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "juan.arteaga.f@uniautonoma.edu.co",
-    pass: "sjtp squm npkz ctng",
+    user: process.env.EMAIL_USUARIO,
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
-
 // Solo verificar si se conecta a Gmail
 exports.verifyEmail = async (email, token) => {
   try {

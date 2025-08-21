@@ -5,7 +5,6 @@ const cors = require('cors');
 const fs = require('fs'); // <- ESTA ES LA LÍNEA QUE FALTABA
 const path = require('path');
 
-const { DominioComunicacion } = require('./config.js');
 const Rusuarios = require("./routes/UsuariosRoutes.js");
 const Rpodcast = require('./routes/PodtcasRoutes.js');
 const RCategoria = require('./routes/CategoriaRoutes.js');
@@ -21,7 +20,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors({
-  origin: process.env.Ruta_Coneccion_externa, // o '*', pero es mejor ser específico
+  origin: process.env.RUTA_CONECCION_EXTERNA, // o '*', pero es mejor ser específico
   credentials: true, // si usas cookies o auth basada en sesiones
 }));
 
