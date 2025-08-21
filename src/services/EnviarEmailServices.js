@@ -1,5 +1,5 @@
 const { transporter } = require("../schemas/Authgoogle.js");
-
+require('dotenv').config();
 exports.EnviarEmail = async (email, token) => {
     try {
         console.log("📨 Enviando email de verificación...");
@@ -7,14 +7,14 @@ exports.EnviarEmail = async (email, token) => {
         const mailOptions = {
     from: {
         name: 'Sistema Académico - Universidad Autónoma',
-        address: 'juan.arteaga.f@uniautonoma.edu.co'
+        address:process.env.email_usuario 
     },
     to: email,
     subject: "🎓 ¡Bienvenido al Sistema Académico! - Complete su registro",
     text: `¡Bienvenido al Sistema de Gestión Académica!
     
 Para completar su registro como docente, por favor haga clic en el siguiente enlace:
-http://192.168.1.7:5173//registro-docente/${token}
+${process.env.RUTA_CONECCION_EXTERNA}/registro-docente/${token}
 
 Si no puede hacer clic en el enlace, copie y pegue la URL completa en su navegador.
 
@@ -251,7 +251,7 @@ Equipo de Administración Académica`,
 
                 <!-- Botón principal de acción -->
                 <div class="cta-container">
-                    <a href="http://localhost:5173/registro-docente/${token}" class="cta-button">
+                    <a href="${process.env.RUTA_CONECCION_EXTERNA}/registro-docente/${token}" class="cta-button">
                         🚀 Completar Mi Registro
                     </a>
                 </div>
@@ -275,7 +275,7 @@ Equipo de Administración Académica`,
                     Copie y pegue el siguiente enlace en su navegador:
                 </div>
                 <div class="link-text">
-                    http://localhost:5173/registro-docente/${token}
+                    ${process.env.RUTA_CONECCION_EXTERNA}/registro-docente/${token}
                 </div>
 
                 <div class="message">

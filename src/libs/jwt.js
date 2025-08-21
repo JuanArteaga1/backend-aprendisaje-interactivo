@@ -1,4 +1,5 @@
-const { Token_Secreta } = require("../config.js")
+require('dotenv').config();
+const Token_Secreta = process.env.Token_Secreta;
 const jwt = require("jsonwebtoken");
 
 exports.CreateToken = async (payload) => {

@@ -1,7 +1,7 @@
 
 const Usuario = require("../models/Usuarios")
 const bcrypt = require("bcryptjs")
-const CreateToken = require("../libs/jwt");
+const {CreateToken} = require("../libs/jwt");
 const { token } = require("morgan");
 const Rol = require("../models/Rol")
 
