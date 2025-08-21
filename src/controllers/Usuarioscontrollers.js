@@ -1,11 +1,14 @@
 
 const UsuariosServices = require('../services/UsuariosServices');
 const PersonaServices = require('../services/PersonaServices');
+const EnviarEmailServices = require('../services/EnviarEmailServices.js');
 const Usuario = require("../models/Usuarios")
 const Persona = require("../models/Personas")
+const User = require("../models/registro")
 const Rol = require('../models/Rol');
 const bcrypt = require("bcryptjs")
-const CreateToken = require("../libs/jwt")
+const { CreateToken, VerifyToken } = require("../libs/jwt")
+
 
 //creamos un nuevo estudiante
 exports.createUsuarios = async (req, res) => {
@@ -54,6 +57,79 @@ exports.createUsuarios = async (req, res) => {
         console.log(error.message)
     }
 };
+
+exports.RegistrarDocente = async (req, res) => {
+    try {
+        const userExistente = await User.findOne({ email: req.body.email });
+        if (userExistente) {
+            return res.status(400).json({ message: "Email ya registrado" });
+        }
+        const token = await CreateToken({ Email: req.body.email });
+        const expirationTime = new Date(Date.now() + 24 * 60 * 60 * 1000);
+        const nuevoDocente = new User({
+            email: req.body.email,
+            activation_token: token,
+            activation_expires: expirationTime
+        });
+
+        await nuevoDocente.save();
+        await EnviarEmailServices.EnviarEmail(req.body.email, token);
+        return res.status(200).json({
+            message: "Docente registrado y token generado",
+            token: token
+        });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Error al registrar docente" });
+    }
+};
+
+
+exports.ValidarToken = async (req, res) => {
+    try {
+        console.log("Validando token de activación");
+        const { token } = req.params; // el token llega por la URL: /validar/:token
+        
+        if (!token) {
+            return res.status(400).json({ message: "Token no proporcionado" });
+        }
+
+        // 1. Buscar usuario con ese token
+        const user = await User.findOne({ activation_token: token });
+
+        if (!user) {
+            return res.status(404).json({ message: "Token inválido o usuario no encontrado" });
+        }
+        console.log("Usuario encontrado:", user.email);
+
+        // 2. Verificar si el token expiró
+        if (user.activation_expires < Date.now()) {
+            return res.status(401).json({ message: "El token ha expirado, solicita uno nuevo" });
+        }
+
+        // 3. Actualizar usuario - usar $unset para eliminar campos requeridos
+        await User.findByIdAndUpdate(user._id, {
+            $set: { is_verified: true },
+            $unset: { 
+                activation_token: "",
+                activation_expires: ""
+            }
+        });
+
+        console.log("Cuenta activada exitosamente para:", user.email);
+
+        return res.status(200).json({ 
+            message: "Cuenta activada con éxito", 
+            email: user.email 
+        });
+
+    } catch (error) {
+        console.error("Error al validar token:", error);
+        return res.status(500).json({ message: "Error al validar token" });
+    }
+};
+
 //obtenemos todos los estudiantes
 exports.getAllUsuarios = async (req, res) => {
     console.log("entro")

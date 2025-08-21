@@ -19,15 +19,7 @@ const UsuariosSchema = new Schema({
         required: true,
         ref: 'Rol' // Opcional: referencia a la colección 'Roles'
     },
-    estado: {
-        type: String,
-        required: true
-    },
-    //funcion: {
-     //   type: Schema.Types.ObjectId, // ✅ Usa 'Schema.Types.ObjectId'
-     //   required: true,
-      //  ref: 'Funciones' // Opcional: referencia a otra colección
-    //},
+
 });
 
 
