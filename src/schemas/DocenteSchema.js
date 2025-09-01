@@ -9,11 +9,6 @@ exports.RegistroDocenteSchema = z.object({
       required_error: "El número de identificación es obligatorio",
     }).regex(/^\d+$/, "La identificación debe contener solo números"),
   
-    Codigo: z.string({
-      required_error: "El código del docente es obligatorio",
-    }).min(1, "El código del docente no puede estar vacío")
-    .regex(/^\d+$/, "el Codigo debe contener solo números"), 
-  
     contrasena: z.string({
       required_error: "La contraseña es obligatoria",
     }).min(6, "La contraseña debe tener al menos 6 caracteres"),

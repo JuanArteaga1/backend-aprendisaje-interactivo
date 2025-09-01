@@ -10,10 +10,6 @@ const UsuariosSchema = new Schema({
         type: String,
         required: true
     },
-    Codigo: {
-        type: String,
-        required: true
-    },
     rol: {
         type: Schema.Types.ObjectId, // ✅ Usa 'Schema.Types.ObjectId'
         required: true,
