@@ -1,6 +1,7 @@
 
 const UsuariosServices = require('../services/UsuariosServices');
 const PersonaServices = require('../services/PersonaServices');
+const SolicitudesServices = require('../services/SolicitudesServices');
 const EnviarEmailServices = require('../services/EnviarEmailServices.js');
 const Usuario = require("../models/Usuarios")
 const Persona = require("../models/Personas")
@@ -55,6 +56,31 @@ exports.createUsuarios = async (req, res) => {
     } catch (error) {
         console.log("error entro")
         console.log(error.message)
+    }
+};
+
+exports.GetAllSolicitudes = async (req, res) => {
+    try {
+
+        const Solicitudes = await SolicitudesServices.getAllSolicitudes();
+        res.status(200).json(Solicitudes);
+    } catch (error) {
+        res.status(500).json({ message: 'Error obteniendo solicitudes', error });
+    }
+}
+
+exports.deleteSolicitudes = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const SolicitudesEliminada = await SolicitudesServices.DeleteSolicitudesId(id);
+
+        if (!SolicitudesEliminada) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        res.status(200).json({ message: 'Usuario eliminado correctamente', usuario: SolicitudesEliminada });
+    } catch (error) {
+        res.status(500).json({ message: 'Error eliminando solicitud', error });
     }
 };
 
@@ -132,7 +158,6 @@ exports.ValidarToken = async (req, res) => {
 
 //obtenemos todos los estudiantes
 exports.getAllUsuarios = async (req, res) => {
-    console.log("entro")
     try {
         const usuarios = await UsuariosServices.getAllUsuarios()
         res.status(200).json(usuarios);
