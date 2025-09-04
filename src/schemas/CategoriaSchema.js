@@ -8,8 +8,4 @@ exports.SubirCategoriaSchema = z.object({
   Descripcion: z.string({
     required_error: "La descripción es obligatoria",
   }).max(500, { message: "La descripción no puede superar los 500 caracteres" }),
-
-  Estado: z.string({
-    required_error: "Debe seleccionar un estado",
-  }),
 });

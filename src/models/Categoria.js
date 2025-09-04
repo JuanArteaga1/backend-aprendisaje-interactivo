@@ -10,10 +10,6 @@ const CategoriaSchema = new Schema({
         type: String,
         required: true
     },
-    Estado: {
-        type: String,
-        required: true
-    }
     
 });
 
