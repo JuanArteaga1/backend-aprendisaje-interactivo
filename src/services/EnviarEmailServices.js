@@ -8,7 +8,7 @@ exports.EnviarEmail = async (email, token) => {
         const mailOptions = {
             from: {
                 name: 'Sistema Académico - Universidad Autónoma',
-                address: process.env.email_usuario
+                address: process.env.EMAIL_USUARIO
             },
             to: email,
             subject: "🎓 ¡Bienvenido al Sistema Académico! - Complete su registro",

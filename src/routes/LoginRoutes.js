@@ -6,7 +6,6 @@ const { LoginSchema } = require('../schemas/LoginSchema')
 const { verifyToken } = require('../middlewares/ValidacionToken')
 
 
-
 const router = Router();
 router.route("/").post(ValidacionSchema(LoginSchema), login)
 router.route("/out").post(loginout)

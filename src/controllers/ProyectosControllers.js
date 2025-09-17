@@ -36,6 +36,7 @@ exports.GetProyectosId = async (req, res) => {
 //CONTROLADOR PARA MOSTRAR PERSONAS QUE ESTA REGISTRADAS
 exports.GetProyectosAll = async (req, res) => {
     try {
+        console.log("entrar proeyctos")
         const Proyectos = await ProyectosService.getAllProyectos(req.body);
         res.status(201).json(Proyectos);
     } catch (error) {
