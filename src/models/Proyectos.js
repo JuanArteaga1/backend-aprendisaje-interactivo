@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const ReviewSchema = new Schema({
+  usuario: { type: String, required: true },  // o ref: 'Usuarios'
+  rating: { type: Number, min: 1, max: 5, required: true },
+  comentario: { type: String, default: "" },
+  fecha: { type: Date, default: Date.now }
+});
+
 const ProyectoSchema = new Schema({
     nombre_proyecto: {
         type: String,
@@ -50,6 +57,7 @@ const ProyectoSchema = new Schema({
         required: true
     },
     // campo nuevo
-  downloads: { type: Number, default: 0 }
+  downloads: { type: Number, default: 0 },
+  reviews: [ReviewSchema]
 });
 module.exports = mongoose.model("Proyectos", ProyectoSchema)
