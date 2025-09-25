@@ -44,3 +44,13 @@ exports.DeleteProyectosId = async (id, Proyectos) => {
     const ProyectosDelete = await ProyectosModel.findByIdAndDelete(id); // Elimina el documento por ID
     return ProyectosDelete;
 };
+
+exports.incrementDownloads = async (id) => {
+  const proyecto = await ProyectosModel.findById(id);
+  if (!proyecto) return null;
+
+  proyecto.downloads = (proyecto.downloads || 0) + 1;
+  await proyecto.save();
+  return proyecto;
+};
+

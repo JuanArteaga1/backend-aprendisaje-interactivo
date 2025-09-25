@@ -35,3 +35,12 @@ exports.DeleteSimulacionesId = async (id, Simulaciones) => {
     const SimulacionesDelete = await SimulacionesModel.findByIdAndDelete(id);
     return SimulacionesDelete;
 };
+
+exports.incrementDownloads = async (id) => {
+  const simulacion = await SimulacionesModel.findById(id);
+  if (!simulacion) return null;
+
+  simulacion.downloads = (simulacion.downloads || 0) + 1;
+  await simulacion.save();
+  return simulacion;
+};

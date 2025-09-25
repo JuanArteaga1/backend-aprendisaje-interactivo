@@ -48,6 +48,8 @@ const ProyectoSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Usuarios',
         required: true
-    }
+    },
+    // campo nuevo
+  downloads: { type: Number, default: 0 }
 });
 module.exports = mongoose.model("Proyectos", ProyectoSchema)
