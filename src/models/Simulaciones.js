@@ -49,5 +49,6 @@ const SimulacionesSchema = new Schema({
         type: String,
         required: true
     },
+    downloads: { type: Number, default: 0 }
 });
 module.exports = mongoose.model("Simulaciones", SimulacionesSchema)

@@ -69,3 +69,15 @@ exports.DeleteProyectosId = async (req, res) => {
         res.status(409).json({ message: error.message });
     }
 };
+
+exports.RegistrarDescarga = async (req, res) => {
+  try {
+    const proyecto = await ProyectosService.incrementDownloads(req.params.id);
+    if (!proyecto) {
+      return res.status(404).json({ message: "Proyecto no encontrado" });
+    }
+    res.status(200).json({ downloads: proyecto.downloads });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
