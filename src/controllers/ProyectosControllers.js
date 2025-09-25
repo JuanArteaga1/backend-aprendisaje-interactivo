@@ -81,3 +81,41 @@ exports.RegistrarDescarga = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.addReview = async (req, res) => {
+  try {
+    const { usuario, rating, comentario } = req.body;
+    const proyecto = await ProyectosModel.findById(req.params.id);
+
+    if (!proyecto) {
+      return res.status(404).json({ message: "Proyecto no encontrado" });
+    }
+
+    proyecto.reviews.push({ usuario, rating, comentario });
+    await proyecto.save();
+
+    res.status(201).json(proyecto);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.deleteReview = async (req, res) => {
+  try {
+    const { id, reviewId } = req.params;
+    const proyecto = await ProyectosModel.findById(id);
+
+    if (!proyecto) {
+      return res.status(404).json({ message: "Proyecto no encontrado" });
+    }
+
+    proyecto.reviews = proyecto.reviews.filter(
+      (rev) => rev._id.toString() !== reviewId
+    );
+
+    await proyecto.save();
+    res.status(200).json(proyecto);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

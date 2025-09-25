@@ -82,3 +82,41 @@ exports.RegistrarDescarga = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.addReview = async (req, res) => {
+  try {
+    const { usuario, rating, comentario } = req.body;
+    const simulacion = await SimulacionesModel.findById(req.params.id);
+
+    if (!simulacion) {
+      return res.status(404).json({ message: "Proyecto no encontrado" });
+    }
+
+    simulacion.reviews.push({ usuario, rating, comentario });
+    await simulacion.save();
+
+    res.status(201).json(simulacion);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.deleteReview = async (req, res) => {
+  try {
+    const { id, reviewId } = req.params;
+    const simulacion = await SimulacionesModel.findById(id);
+
+    if (!simulacion) {
+      return res.status(404).json({ message: "Proyecto no encontrado" });
+    }
+
+    simulacion.reviews = simulacion.reviews.filter(
+      (rev) => rev._id.toString() !== reviewId
+    );
+
+    await simulacion.save();
+    res.status(200).json(simulacion);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
